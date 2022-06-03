@@ -1,17 +1,11 @@
-const express = require('express');
-const PORT = process.env.PORT || '3000';
-var cors = require('cors');
-
-const app = express();
+const express = require('express')
+const bp = require('body-parser')
+const app = express()
+const port = process.env.PORT || '3000';
 
 app.use(express.json());
-
-
-
-// use it before all route definitions
-app.use(cors({ origin: '*' }));
-
-// Add headers
+app.use(bp.json())
+app.use(bp.urlencoded({ extended: true }))
 app.use(function(req, res, next) {
 
     // Website you wish to allow to connect
@@ -32,22 +26,19 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', (req, res) => {
-    res.send("API with the whole purpose of it to just ommit letters from sentences if you dont like them.");
-});
+    res.send('This is an API, which serves to ommit unwanted characters from a sentence.')
+})
 
-app.post('/', (req, res) => {
-    var text = {
-        letter: req.body.letter,
-        sentance: req.body.sentance
-    };
+app.post('/application', (req, res) => {
 
-    res.send(`edit numb3 ${LetterRemover(text.sentance,text.letter)} `);
-});
-var x = "zzz";
-// PORT
-app.listen(PORT, () => console.log('Listening on port 3000..'));
+    console.log(req.body)
+    res.send(LetterRemover(req.body.sentence, req.body.letter))
+})
 
+app.listen(port, () => {
+    console.log(`API is listening at http://localhost:${port}`)
+})
 
 function LetterRemover(txt, char) {
-    return txt //txt.replaceAll(char, '');;
+    return txt.replaceAll(char, '');
 }
