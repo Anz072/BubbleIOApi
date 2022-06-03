@@ -41,7 +41,7 @@ app.post('/', (req, res) => {
         sentance: req.body.sentance
     };
 
-    res.send(result: `edit numb3 ${LetterRemover(text.sentance,text.letter)} `);
+    res.send(`edit numb3 ${LetterRemover(text.sentance,text.letter)} `);
 });
 var x = "zzz";
 // PORT
