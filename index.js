@@ -41,9 +41,7 @@ app.post('/', (req, res) => {
         sentance: req.body.sentance
     };
 
-    res.send({
-        result: `string text ${LetterRemover(text.sentance,text.letter)} string text`
-    });
+    res.send(result: `string text ${LetterRemover(text.sentance,text.letter)} string text`);
 });
 var x = "zzz";
 // PORT
